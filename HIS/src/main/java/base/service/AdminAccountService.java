@@ -3,6 +3,8 @@ package base.service;
 import base.model.AccountModel;
 
 public interface AdminAccountService {
-	public String saveAdminDetails(AccountModel model);
+	public Boolean saveAdminDetails(AccountModel model);
+
+	public String findByEmail(String email);
 
 }

@@ -9,4 +9,5 @@ public class AccountModel {
 	private String email;
 	private Character gender;
 	private Character role;
+	private String pwd;
 }

@@ -17,12 +17,30 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+<script>
+	$(document).ready(function(e) {
+		$("#email").blur(function(event) {
+			$("#dupEmail").html("");
+			var emailId = $("#email").val();
+			$.ajax({
+				url : 'emailVaidation?email=' + emailId,
+				success : function(response) {
+					if (response == 'duplicate') {
+						$("#dupEmail").html("Email already Exist");
+						$("#email").focus();
+					}
+				}
+			});
+		});
+	});
+</script>	
 <title>Admin Account Create</title>
 </head>
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container" align="center">
-		<h3 class="text text-success">${msg }</h3>
+		<h4 class="text text-info">${msg }</h4>
 		<form:form action="AdminCreateAccount" method="POST"
 			modelAttribute="adminModel">
 			<table class="table-hover">
@@ -44,7 +62,10 @@
 				<tr>
 					<td><h5>Email</h5></td>
 					<td><form:input class="form-control" type="email" path="email"
-							required="required" placeholder="INPUT EMAIL ADDRESS" /></td>
+							required="required" placeholder="INPUT EMAIL ADDRESS" /><font
+						color='red'>
+							<div id="dupEmail"></div>
+					</font></td>
 				</tr>
 				<tr>
 					<td><h5>Gender</h5></td>
@@ -58,10 +79,8 @@
 							type="button" data-toggle="dropdown" path="role"
 							required="required">
 							<form:option class="btn btn-default dropdown-toggle" value="">-SELECT-</form:option>
-							<form:option class="btn btn-default dropdown-toggle"
-								value="A">ADMIN</form:option>
-							<form:option class="btn btn-default dropdown-toggle"
-								value="C">CASE WORKER</form:option>
+							<form:option class="btn btn-default dropdown-toggle" value="A">ADMIN</form:option>
+							<form:option class="btn btn-default dropdown-toggle" value="C">CASE WORKER</form:option>
 						</form:select></td>
 				</tr>
 				<tr>
