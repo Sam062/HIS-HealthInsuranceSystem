@@ -1,7 +1,5 @@
 package base.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +7,7 @@ import org.springframework.stereotype.Service;
 import base.constents.AdminAccountConstents;
 import base.entity.AdminAccountEntity;
 import base.model.AccountModel;
+import base.model.UnlockAccountModel;
 import base.repository.AdminAccountMasterRepo;
 import base.service.AdminAccountService;
 import base.utils.EmailUtils;
@@ -42,10 +41,32 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 
 	@Override
 	public String findByEmail(String email) {
-		List<AdminAccountEntity> findByEmail = repo.findByEmail(email);
-		if(findByEmail.isEmpty())
+		AdminAccountEntity findByEmail = repo.findByEmail(email);
+		if(findByEmail==null)
 			return "unique";
 		else
 			return "duplicate";
+	}
+	@Override
+	public AccountModel findByEmailAndPwd(String email, String pwd) {
+		AdminAccountEntity adminAccount = repo.findByEmailAndPwd(email, pwd);
+		AccountModel model=null;
+		if(adminAccount!=null) {
+			model=new AccountModel();
+			BeanUtils.copyProperties(adminAccount, model);
+			return model;
+		}
+		return model;
+	}
+	@Override
+	public Boolean updateAccount(UnlockAccountModel umodel) {
+		AdminAccountEntity findByEmail = repo.findByEmail(umodel.getEmail());
+		if(findByEmail!=null) {
+			findByEmail.setPwd(umodel.getNewPwd());
+			findByEmail.setAccountStatus(AdminAccountConstents.ACTIVE.toString());
+			repo.save(findByEmail);
+			return true;
+		}
+		return false;
 	}
 }

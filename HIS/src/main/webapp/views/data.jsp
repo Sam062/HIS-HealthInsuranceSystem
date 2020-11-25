@@ -8,8 +8,9 @@
 </head>
 <body>
 	<%@include file="header.jsp"%>
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	<h2>${msg}</h2>
-	<a href="/">GO BACK</a>
+	&nbsp;&nbsp;<a href="/">GO BACK</a>
 
 </body>
 </html>

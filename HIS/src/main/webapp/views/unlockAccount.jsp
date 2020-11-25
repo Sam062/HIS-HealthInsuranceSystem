@@ -14,7 +14,7 @@
 <script>
 	function validatePwd() {
 		var newPwd = $('#newPwd').val();
-		var confirmPwd = $('#confirmPwd').val();
+		var confirmPwd = $('#confirmNewPwd').val();
 		if (newPwd != confirmPwd) {
 			$('#errID').text(
 					"New Password and Confirm Password should be same.");
@@ -28,8 +28,8 @@
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container" align="center">
-		<font color="red" size="5"> <span id="errID"></span>
-		</font> <font color="red" size="5"> ${msg} </font>
+		<font color="red" size="4"> <span id="errID"></span>
+		</font> <font color="red" size="4"> ${msg} </font>
 
 		<form:form action="unlockAdminAccount" method="POST"
 			modelAttribute="unlockAccountModel">
@@ -61,7 +61,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input class="btn btn-success"
-						type="submit" value="UNLOCK ACCOUNT"
+						type="submit" value="ACTIVATE ACCOUNT"
 						onclick="javascript:return validatePwd()"></td>
 				</tr>
 

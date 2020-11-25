@@ -8,7 +8,7 @@
 		System</b></h1>
 	<div class="container" align="center">
 		<a class="btn btn-primary btn-sm" href="loadCreateAccount">SignUp</a>&nbsp;&nbsp;&nbsp;<a
-			class="btn btn-primary btn-sm" href="">Sign in</a>
+			class="btn btn-primary btn-sm" href="loginPage">Sign in</a>
 	</div>
 	<hr>
 </body>

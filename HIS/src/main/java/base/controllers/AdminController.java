@@ -38,17 +38,4 @@ public class AdminController {
 	public @ResponseBody String emailValidation(@RequestParam("email") String email) {
 		return service.findByEmail(email);
 	}
-
-	//	@PostMapping("/data")
-	//	public String showData(@ModelAttribute("accModel")AccountModel accModel, Model model) {
-	//		String isUserSaved=service.saveAdminDetails(accModel);
-	//
-	//		if(isUserSaved){
-	//			model.addAttribute("msg", "Hello "+accModel.getFname()+" , <br/>Thank you for registering here, Registration almost done. Please check your email.");
-	//		}
-	//		else
-	//			model.addAttribute("msg", "SOMETHING WENT WRONG :(");
-	//		return "data";
-	//	}
-
 }
