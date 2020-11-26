@@ -10,4 +10,5 @@ public class AccountModel {
 	private Character gender;
 	private Character role;
 	private String pwd;
+	private String accountStatus;
 }
