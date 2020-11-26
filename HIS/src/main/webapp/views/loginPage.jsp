@@ -11,7 +11,7 @@
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container" align="center">
-		<form:form action="****" method="POST" modelAttribute="accountModel">
+		<form:form action="validateAdminLogin" method="POST" modelAttribute="accountModel">
 			<table class="table-hover">
 				<tr class="primary">
 					<td colspan="2" align="center">

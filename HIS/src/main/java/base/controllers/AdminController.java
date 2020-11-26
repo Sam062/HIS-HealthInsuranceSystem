@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import base.constents.AdminAccountConstents;
 import base.model.AccountModel;
 import base.service.AdminAccountService;
 
@@ -37,5 +38,20 @@ public class AdminController {
 	@GetMapping("/emailVaidation")
 	public @ResponseBody String emailValidation(@RequestParam("email") String email) {
 		return service.findByEmail(email);
+	}
+
+	@PostMapping("/validateAdminLogin")
+	public String validateAdminLogin(@ModelAttribute("accountModel") AccountModel accModel,Model model) {
+		AccountModel findByEmailAndPwd = service.findByEmailAndPwd(accModel.getEmail(), accModel.getPwd());
+		if(findByEmailAndPwd!=null) {
+			if(findByEmailAndPwd.getAccountStatus().equals(AdminAccountConstents.INACTIVE.toString())) {
+				model.addAttribute("msg", "Please activate your account first.");
+				return "loginPage";
+			}
+			return "adminDashboard";
+		}else {
+			model.addAttribute("msg", "Invalid Credentials!");	
+			return "loginPage";
+		}
 	}
 }
