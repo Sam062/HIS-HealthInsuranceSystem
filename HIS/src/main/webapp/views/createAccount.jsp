@@ -34,7 +34,7 @@
 			});
 		});
 	});
-</script>	
+</script>
 <title>Admin Account Create</title>
 </head>
 <body>
@@ -66,6 +66,11 @@
 						color='red'>
 							<div id="dupEmail"></div>
 					</font></td>
+				</tr>
+				<tr>
+					<td><h5>Mobile</h5></td>
+					<td><form:input class="form-control" path="mobileNo"
+							required="required" placeholder="INPUT MOBILE NUMBER" /></td>
 				</tr>
 				<tr>
 					<td><h5>Gender</h5></td>

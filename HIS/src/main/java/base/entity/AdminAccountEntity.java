@@ -36,6 +36,9 @@ public class AdminAccountEntity {
 	@NotBlank(message = "Email must not be empty.")
 	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$",message = "Not a valid email.")
 	private String email;
+	
+	@Column(name = "MOB_NO")
+	private String mobileNo;
 
 	@Column(name = "GENDER")
 	private Character gender;

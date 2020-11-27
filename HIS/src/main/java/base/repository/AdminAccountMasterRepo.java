@@ -11,4 +11,5 @@ import base.entity.AdminAccountEntity;
 public interface AdminAccountMasterRepo extends JpaRepository<AdminAccountEntity, Serializable>{
 	AdminAccountEntity findByEmail(String email);
 	AdminAccountEntity findByEmailAndPwd(String email, String pwd);
+	AdminAccountEntity findByMobileNo(String mobileNo);
 }

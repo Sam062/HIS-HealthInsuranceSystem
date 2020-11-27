@@ -40,12 +40,15 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 	}
 
 	@Override
-	public String findByEmail(String email) {
+	public AccountModel findByEmail(String email) {
 		AdminAccountEntity findByEmail = repo.findByEmail(email);
-		if(findByEmail==null)
-			return "unique";
-		else
-			return "duplicate";
+		AccountModel accModel=null;
+		if(findByEmail!=null) {
+			accModel=new AccountModel();
+			BeanUtils.copyProperties(findByEmail, accModel);
+			return accModel;
+		}
+		return accModel;
 	}
 	@Override
 	public AccountModel findByEmailAndPwd(String email, String pwd) {
