@@ -1,5 +1,7 @@
 package base.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +35,7 @@ public class AdminController {
 			model.addAttribute("msg", "Hello "+amodel.getFname()+" , <br/>Thank you for registering here, Registration almost done. Please check your email.");
 		else
 			model.addAttribute("msg", "Something Went Wrong! ;(");
-		return "data";
+		return "adminRegSuccess";
 	}
 
 	@GetMapping("/emailVaidation")
@@ -77,13 +79,27 @@ public class AdminController {
 					StringBuilder number=new StringBuilder("*********");
 					number.append(findByEmail.getMobileNo().substring(9, 13).toString());
 					model.addAttribute("msg", "Password sent to "+number);
+					AccountModel aModel=new AccountModel();
+					model.addAttribute("accountModel", aModel);
+					return "loginPage";
 				} catch (Exception e) {
-					e.printStackTrace();
 					model.addAttribute("msg", "Couldn't send messege.");
 				}
 			}
 		else
 			model.addAttribute("msg", "Email doesn't exist");
 		return "forgotPwdPage";
+	}
+	@GetMapping("/getAllAccounts")
+	public String getAllAccounts(Model model) {
+		List<AccountModel> findAllAccounts = service.findAllAccounts();
+		if(findAllAccounts!=null) {
+			if(findAllAccounts.isEmpty()) 
+				model.addAttribute("msg", "No Accounts Found !");
+			else
+				model.addAttribute("list",findAllAccounts);
+		}else
+			model.addAttribute("msg", "No Accounts Found !");
+		return "viewAllAccounts";
 	}
 }

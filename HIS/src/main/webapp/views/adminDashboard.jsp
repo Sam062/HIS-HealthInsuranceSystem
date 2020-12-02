@@ -1,3 +1,4 @@
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,9 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>UNDER CONSTRUCTION</h1>
+	<%@include file="header.jsp"%>
 
-	<a class="btn btn-primary btn-lg" href="/viewAccounts">View Data</a>
+	<div align="center">
+		<h1 style="color: red;">
+			<marquee>
+				<b>***** UNDER CONSTRUCTION *****</b>
+			</marquee>
+		</h1>
+
+		<a class="btn btn-success btn-lg" href="/getAllAccounts">View Data</a>
+	</div>
 
 </body>
 </html>
