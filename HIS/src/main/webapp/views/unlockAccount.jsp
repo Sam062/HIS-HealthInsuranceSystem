@@ -23,7 +23,7 @@
 		return true;
 	}
 </script>
-<title>User Management Application</title>
+<title>Health Insurance System</title>
 </head>
 <body>
 	<%@include file="header.jsp"%>

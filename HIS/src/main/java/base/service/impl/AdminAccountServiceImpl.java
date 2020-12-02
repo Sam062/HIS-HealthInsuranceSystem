@@ -1,5 +1,8 @@
 package base.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,8 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 
 	@Override
 	public Boolean saveAdminDetails(AccountModel model) {
+		if(!model.getMobileNo().contains("+91"))
+			model.setMobileNo("+91"+model.getMobileNo());
 		model.setPwd(RandomPwdGenerater.randomAlphaNumeric(5));
 		AdminAccountEntity entity=new AdminAccountEntity();
 		BeanUtils.copyProperties(model, entity);
@@ -71,5 +76,18 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 			return true;
 		}
 		return false;
+	}
+	@Override
+	public List<AccountModel> findAllAccounts() {
+		List<AdminAccountEntity> findAll = repo.findAll();
+		if(findAll.isEmpty()) 
+			return null;
+		List<AccountModel> accModelList=new ArrayList<>();
+		findAll.stream().forEach(a->{
+			AccountModel accModel=new AccountModel();
+			BeanUtils.copyProperties(a, accModel);
+			accModelList.add(accModel);
+		});
+		return accModelList;
 	}
 }

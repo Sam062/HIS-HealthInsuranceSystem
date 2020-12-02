@@ -83,7 +83,7 @@
 					<td><form:select class="btn btn-default dropdown-toggle"
 							type="button" data-toggle="dropdown" path="role"
 							required="required">
-							<form:option class="btn btn-default dropdown-toggle" value="">-SELECT-</form:option>
+							<form:option class="btn btn-default dropdown-toggle" value=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- SELECT -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</form:option>
 							<form:option class="btn btn-default dropdown-toggle" value="A">ADMIN</form:option>
 							<form:option class="btn btn-default dropdown-toggle" value="C">CASE WORKER</form:option>
 						</form:select></td>
