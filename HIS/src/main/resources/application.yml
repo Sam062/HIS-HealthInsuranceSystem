@@ -10,12 +10,15 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-    database-platform: org.hibernate.dialect.H2Dialect  mvc:    view:      prefix: /views/
+    database-platform: org.hibernate.dialect.H2Dialect
+  mvc:
+    view:
+      prefix: /views/
       suffix: .jsp
   mail:
     host: smtp.gmail.com
     username: sam9695654346@gmail.com
-    password: Sam*gmail@9695
+    password: **************
 # Other properties
     properties:
       mail:
