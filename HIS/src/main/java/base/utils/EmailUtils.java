@@ -19,23 +19,16 @@ public class EmailUtils {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	public Boolean sendUserUnlockEmail(AccountModel accModel) {
-		boolean isSent=false;
-		try {
-			//Using Mime we can send extra Functioned Emails which is better than using SimpleMail
-			MimeMessage mimeMessage = mailSender.createMimeMessage();
-			MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+	public void sendUserUnlockEmail(AccountModel accModel) throws Exception {
+		//Using Mime we can send extra Functioned Emails which is better than using SimpleMail
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 
-			mimeMessageHelper.setTo(accModel.getEmail());
-			mimeMessageHelper.setSubject("Unlock Your Account");
-			mimeMessageHelper.setText(getUnlockAccEmailBody(accModel),true);
+		mimeMessageHelper.setTo(accModel.getEmail());
+		mimeMessageHelper.setSubject("Unlock Your Account");
+		mimeMessageHelper.setText(getUnlockAccEmailBody(accModel),true);
 
-			mailSender.send(mimeMessage);
-			isSent=true;	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return isSent;
+		mailSender.send(mimeMessage);
 	}
 
 	private String getUnlockAccEmailBody(AccountModel accModel) throws IOException {
