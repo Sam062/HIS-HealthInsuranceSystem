@@ -1,0 +1,16 @@
+Hi {FNAME} {LNAME} :
+<br/>
+
+Welcome to HIS(Health Insurance System), 
+<br>Your registration is almost completed. Please use below details to unlock your account.<br/>
+<br/>
+
+Temporary Password : <b>{TEMP-PWD}</b> <br/>
+<a href='http://localhost:9935/unlockAccount?email={EMAIL}'>
+
+Click here to unlock your account.</a><br/>
+<br/>
+<hr>
+Thanks & Regards,<br/>
+HIS Team.<br/>
+
