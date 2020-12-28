@@ -18,18 +18,22 @@ spring:
   mail:
     host: smtp.gmail.com
     username: sam9695654346@gmail.com
-    password: **************
-# Other properties
+    password: aaa
     properties:
       mail:
         smtp:
           auth: true
-          connectiontimeout: 5000
-          timeout: 5000
-          writetimeout: 5000
-# TLS , port 587
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
           starttls:
             enable: true
+    port: 587
+
+# SSL, post 465
+#spring.mail.properties.mail.smtp.socketFactory.port = 465
+#spring.mail.properties.mail.smtp.socketFactory.class = javax.net.ssl.SSLSocketFactory      
+    
 
 # SSL, post 465
 #spring.mail.properties.mail.smtp.socketFactory.port = 465
