@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import base.constents.AdminAccountConstents;
 import base.entity.AdminAccountEntity;
@@ -17,6 +19,7 @@ import base.utils.EmailUtils;
 import base.utils.RandomPwdGenerater;
 
 @Service
+@Transactional
 public class AdminAccountServiceImpl implements AdminAccountService{
 	@Autowired
 	private AdminAccountMasterRepo repo;
@@ -35,11 +38,14 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 		try {
 			AdminAccountEntity isSaved = repo.save(entity);
 			if(isSaved!=null) {
-				return emailUtils.sendUserUnlockEmail(model);
+				emailUtils.sendUserUnlockEmail(model);
+				return true;
 			}
 			else
 				return false;
-		} catch (org.springframework.transaction.TransactionSystemException e) {
+		} catch (Exception e) {
+			// Rollback if mail not sent or any issues
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			return false;
 		}
 	}
