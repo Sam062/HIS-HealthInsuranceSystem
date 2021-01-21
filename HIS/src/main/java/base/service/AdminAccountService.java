@@ -11,4 +11,6 @@ public interface AdminAccountService {
 	public AccountModel findByEmailAndPwd(String email,String pwd);
 	public Boolean updateAccount(UnlockAccountModel umodel);
 	public List<AccountModel> findAllAccounts();
+	public AccountModel findByadminId(Integer id);
+	public Boolean save(AccountModel model);
 }

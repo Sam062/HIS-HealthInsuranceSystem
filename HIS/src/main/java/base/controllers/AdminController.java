@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import base.constents.AdminAccountConstents;
 import base.model.AccountModel;
@@ -100,6 +101,28 @@ public class AdminController {
 				model.addAttribute("list",findAllAccounts);
 		}else
 			model.addAttribute("msg", "No Accounts Found !");
+		return "viewAllAccounts";
+	}
+	@GetMapping("/updateaccountstatus")
+	public String activeData(@RequestParam("id")Integer id,
+			@RequestParam("status")String status,
+			RedirectAttributes model) {
+		AccountModel findByadminId = service.findByadminId(id);
+		boolean result=false;
+		if(findByadminId!=null) {
+			if(status.equalsIgnoreCase("activate")) {
+				findByadminId.setDeleteStatus(AdminAccountConstents.ACTIVE.toString());
+				result=service.save(findByadminId);
+			}
+			else {
+				findByadminId.setDeleteStatus(AdminAccountConstents.INACTIVE.toString());
+				result=service.save(findByadminId);
+			}
+		}
+		if(result) {
+			model.addFlashAttribute("msg",findByadminId.getFname()+" "+findByadminId.getLname()+" "+findByadminId.getDeleteStatus());
+			return "redirect:/getAllAccounts";
+		}
 		return "viewAllAccounts";
 	}
 }

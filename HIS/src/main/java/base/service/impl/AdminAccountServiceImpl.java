@@ -7,7 +7,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import base.constents.AdminAccountConstents;
 import base.entity.AdminAccountEntity;
@@ -45,7 +44,7 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 				return false;
 		} catch (Exception e) {
 			// Rollback if mail not sent or any issues
-			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			//			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			return false;
 		}
 	}
@@ -95,5 +94,24 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 			accModelList.add(accModel);
 		});
 		return accModelList;
+	}
+	@Override
+	public AccountModel findByadminId(Integer id) {
+		AdminAccountEntity findByAdminId = repo.findByAdminId(id);
+		if(findByAdminId!=null) {
+			AccountModel model=new AccountModel();
+			BeanUtils.copyProperties(findByAdminId, model);
+			return model;
+		}
+		return null;
+	}
+	@Override
+	public Boolean save(AccountModel model) {
+		AdminAccountEntity adminAccountEntity = new AdminAccountEntity();
+		BeanUtils.copyProperties(model, adminAccountEntity);
+		AdminAccountEntity save = repo.save(adminAccountEntity);
+		if(save!=null&&save.getAdminId()!=null)
+			return true;
+		return false;
 	}
 }

@@ -12,4 +12,5 @@ public interface AdminAccountMasterRepo extends JpaRepository<AdminAccountEntity
 	AdminAccountEntity findByEmail(String email);
 	AdminAccountEntity findByEmailAndPwd(String email, String pwd);
 	AdminAccountEntity findByMobileNo(String mobileNo);
+	AdminAccountEntity findByAdminId(Integer adminId);
 }

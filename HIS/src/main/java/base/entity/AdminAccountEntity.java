@@ -44,7 +44,7 @@ public class AdminAccountEntity {
 	private Character gender;
 
 	@Column(name = "ROLE")
-	private Character role;
+	private String role;
 
 	@Column(name = "ACC_STATUS")
 	private String accountStatus;
