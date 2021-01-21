@@ -58,7 +58,7 @@
 						<td>${list.mobileNo}</td>
 						<td>${list.gender}</td>
 						<td>${list.role}</td>
-						<td><a href="edit?id=${list.adminId}"
+						<td><a href="loadeditpage?id=${list.adminId}"
 							class="btn btn-success btn-sm">EDIT</a> &nbsp; <c:if
 								test="${list.deleteStatus == 'INACTIVE'}">
 								<a href="updateaccountstatus?status=activate&id=${list.adminId}"

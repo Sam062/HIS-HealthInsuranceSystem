@@ -2,6 +2,7 @@ package base.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,7 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 		return model;
 	}
 	@Override
-	public Boolean updateAccount(UnlockAccountModel umodel) {
+	public Boolean updateAccountStatus(UnlockAccountModel umodel) {
 		AdminAccountEntity findByEmail = repo.findByEmail(umodel.getEmail());
 		if(findByEmail!=null) {
 			findByEmail.setPwd(umodel.getNewPwd());
@@ -97,21 +98,35 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 	}
 	@Override
 	public AccountModel findByadminId(Integer id) {
-		AdminAccountEntity findByAdminId = repo.findByAdminId(id);
-		if(findByAdminId!=null) {
+		Optional<AdminAccountEntity> findByAdminId = repo.findById(id);
+		if(findByAdminId!=null && findByAdminId.isPresent()) {
 			AccountModel model=new AccountModel();
-			BeanUtils.copyProperties(findByAdminId, model);
+			BeanUtils.copyProperties(findByAdminId.get(), model);
 			return model;
 		}
 		return null;
 	}
+
 	@Override
-	public Boolean save(AccountModel model) {
-		AdminAccountEntity adminAccountEntity = new AdminAccountEntity();
-		BeanUtils.copyProperties(model, adminAccountEntity);
-		AdminAccountEntity save = repo.save(adminAccountEntity);
-		if(save!=null&&save.getAdminId()!=null)
-			return true;
+	public Boolean update(AccountModel model) {
+		Optional<AdminAccountEntity> findById = repo.findById(model.getAdminId());
+		AdminAccountEntity entity=null;
+		if(findById!=null && findById.isPresent()) {
+			entity=findById.get();
+			entity.setFname(model.getFname());
+			entity.setLname(model.getLname());
+			entity.setEmail(model.getEmail());
+			entity.setMobileNo(model.getMobileNo());
+			entity.setGender(model.getGender());
+			entity.setRole(model.getRole());
+			if(null==model.getDeleteStatus())
+				entity.setDeleteStatus(entity.getDeleteStatus());
+			else
+				entity.setDeleteStatus(model.getDeleteStatus());
+			AdminAccountEntity save = repo.save(entity);
+			if(save!=null&&save.getAdminId()!=null)
+				return true;
+		}
 		return false;
 	}
 }

@@ -103,6 +103,21 @@ public class AdminController {
 			model.addAttribute("msg", "No Accounts Found !");
 		return "viewAllAccounts";
 	}
+	@GetMapping("/loadeditpage")
+	public String showEditPage(@RequestParam("id")Integer id,Model model) {
+		AccountModel accModel=service.findByadminId(id);
+		model.addAttribute("adminModel", accModel);
+		return "editPage";
+	}
+	@PostMapping("/adminaccountedit")
+	public String editAdminAccount(@ModelAttribute("adminModel")AccountModel accModel,RedirectAttributes model) {
+		Boolean update = service.update(accModel);
+		if(update)
+			model.addFlashAttribute("msg", "Account updated successfully.");
+		else
+			model.addFlashAttribute("msg", "Account couldn't update.");
+		return "redirect:/getAllAccounts";
+	}
 	@GetMapping("/updateaccountstatus")
 	public String activeData(@RequestParam("id")Integer id,
 			@RequestParam("status")String status,
@@ -112,11 +127,11 @@ public class AdminController {
 		if(findByadminId!=null) {
 			if(status.equalsIgnoreCase("activate")) {
 				findByadminId.setDeleteStatus(AdminAccountConstents.ACTIVE.toString());
-				result=service.save(findByadminId);
+				result=service.update(findByadminId);
 			}
 			else {
 				findByadminId.setDeleteStatus(AdminAccountConstents.INACTIVE.toString());
-				result=service.save(findByadminId);
+				result=service.update(findByadminId);
 			}
 		}
 		if(result) {

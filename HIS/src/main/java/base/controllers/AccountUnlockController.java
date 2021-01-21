@@ -29,7 +29,7 @@ public class AccountUnlockController {
 	public String unlockAdminAccount(@ModelAttribute("unlockAccountModel")UnlockAccountModel umodel,Model model) {
 		AccountModel accModel = service.findByEmailAndPwd(umodel.getEmail(), umodel.getTempPwd());
 		if(accModel!=null) {
-			Boolean updateAccount = service.updateAccount(umodel);
+			Boolean updateAccount = service.updateAccountStatus(umodel);
 			if(updateAccount) {
 				model.addAttribute("msg", "Account Activated Successfully.");
 				AccountModel aModel=new AccountModel();
