@@ -19,11 +19,21 @@
 			"pagingType" : "full_numbers"
 		});
 	});
-	function deleteConfirm(test) {
-		return confirm("Are you sure, You want to "+test+"?");
+	function deleteConfirm(test,id) {
+		 if(confirm("Are you sure, You want to "+test+"?")){
+		 	let link=document.getElementById("delbtn").href;
+		 	link="updateaccountstatus?status=delete&id="+id;
+		 	window.open(link);
+		 	window.close();
+		 }
 	}
-	function activateConfirm(test1) {
-		return confirm("Are you sure, You want to "+test1+"?");
+	function activateConfirm(test,id) {
+		 if(confirm("Are you sure, You want to "+test+"?")){
+		 	let link=document.getElementById("actbtn").href;
+		 	link="updateaccountstatus?status=activate&id="+id;
+		 	window.open(link);
+		 	window.close();
+		 }
 	}
 </script>
 
@@ -61,12 +71,13 @@
 						<td><a href="loadeditpage?id=${list.adminId}"
 							class="btn btn-success btn-sm">EDIT</a> &nbsp; <c:if
 								test="${list.deleteStatus == 'INACTIVE'}">
-								<a href="updateaccountstatus?status=activate&id=${list.adminId}"
-									onclick="activateConfirm('ACTIVATE')"
+								<a href="" name="${list.adminId}" id="actbtn"
+									onclick="activateConfirm('ACTIVATE',name)"
 									class="btn btn-success btn-sm">ACTIVATE</a>
 							</c:if> <c:if test="${list.deleteStatus=='ACTIVE'}">
-								<a href="updateaccountstatus?status=delete&id=${list.adminId}"
-									onclick="deleteConfirm('DELETE')" class="btn btn-danger btn-sm">DELETE</a>
+								<a href="" name="${list.adminId}" id="delbtn"
+									onclick="deleteConfirm('DELETE',name)"
+									class="btn btn-danger btn-sm">DELETE</a>
 							</c:if></td>
 					</tr>
 				</c:forEach>
