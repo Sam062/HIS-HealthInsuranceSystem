@@ -92,8 +92,10 @@ public class AdminController {
 		return "forgotPwdPage";
 	}
 	@GetMapping("/getAllAccounts")
-	public String getAllAccounts(Model model) {
-		List<AccountModel> findAllAccounts = service.findAllAccounts();
+	public String getAllAccounts(@RequestParam(value = "role",defaultValue = "cw")String role, Model model) {
+		if(role.equals("cw"))
+			role="case worker";
+		List<AccountModel> findAllAccounts = service.findAllAccounts(role.toUpperCase());
 		if(findAllAccounts!=null) {
 			if(findAllAccounts.isEmpty()) 
 				model.addAttribute("msg", "No Accounts Found !");
@@ -101,8 +103,23 @@ public class AdminController {
 				model.addAttribute("list",findAllAccounts);
 		}else
 			model.addAttribute("msg", "No Accounts Found !");
-		return "viewAllAccounts";
+		return "viewAll";
 	}
+	@GetMapping("/getall")
+	public @ResponseBody List<AccountModel> getall(@RequestParam("role")String role, Model model) {
+		if(role.equals("cw"))
+			role="case worker";
+		List<AccountModel> findAllAccounts = service.findAllAccounts(role.toUpperCase());
+		if(findAllAccounts!=null) {
+			if(findAllAccounts.isEmpty()) 
+				model.addAttribute("msg", "No Accounts Found !");
+			else
+				model.addAttribute("list",findAllAccounts);
+		}else
+			model.addAttribute("msg", "No Accounts Found !");
+		return findAllAccounts;
+	}
+	
 	@GetMapping("/loadeditpage")
 	public String showEditPage(@RequestParam("id")Integer id,Model model) {
 		AccountModel accModel=service.findByadminId(id);

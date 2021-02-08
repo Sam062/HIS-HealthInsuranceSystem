@@ -84,8 +84,8 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 		return false;
 	}
 	@Override
-	public List<AccountModel> findAllAccounts() {
-		List<AdminAccountEntity> findAll = repo.findAll();
+	public List<AccountModel> findAllAccounts(String role) {
+		List<AdminAccountEntity> findAll = repo.findByRole(role);
 		if(findAll.isEmpty()) 
 			return null;
 		List<AccountModel> accModelList=new ArrayList<>();

@@ -7,9 +7,14 @@
 <head>
 <meta>
 <title>View All Accounts</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 <link
 	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
 	rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -36,9 +41,6 @@
 		 }
 	}
 </script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -48,6 +50,16 @@
 				<tr class="success">
 					<th colspan="8"><h3 align="center" class="text text-primary">Account
 							Details</h3></th>
+				</tr>
+				<tr>
+					<td colspan="8" align="center">Select Role <select
+						class="btn btn-default dropdown-toggle" id="roleSelector"
+						data-toggle="dropdown">
+							<option class="btn btn-default dropdown-toggle" value="Admin">ADMIN</option>
+							<option class="btn btn-default dropdown-toggle"
+								value="Case Worker">CASE WORKER</option>
+					</select>
+					</td>
 				</tr>
 				<tr>
 					<th>S.No</th>
