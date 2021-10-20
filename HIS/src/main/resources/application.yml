@@ -1,6 +1,7 @@
 server:
   port: 9935    
 spring:
+  banner:    location: classpath:hisBanner.txt
   datasource:
     url: jdbc:h2:mem:HIS
     driver-class-name: org.h2.Driver
@@ -18,8 +19,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ********
-    password: ********
+    username: abc
+    password: xyz
     properties:
       mail:
         smtp:
