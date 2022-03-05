@@ -22,7 +22,7 @@ public class AdminController { // Admin Module
 	@Autowired
 	private AdminAccountService service;
 
-	@GetMapping(value = {"/","/loadCreateAccount"})
+	@GetMapping("/loadCreateAccount")
 	public String loadCreateAccountPage(Model model) {
 		AccountModel adminModel=new AccountModel();
 		model.addAttribute("adminModel", adminModel);
@@ -152,7 +152,7 @@ public class AdminController { // Admin Module
 		AccountModel findByadminId = service.findByadminId(id);
 		boolean result=false;
 		if(findByadminId!=null) {
-			if(status.equalsIgnoreCase("activate")) {
+			if(status.equalsIgnoreCase("ACTIVE")) {
 				findByadminId.setDeleteStatus(AdminAccountConstents.ACTIVE.toString());
 				result=service.update(findByadminId);
 			}

@@ -30,6 +30,7 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 	public Boolean saveAdminDetails(AccountModel model) {
 		if(!model.getMobileNo().contains("+91"))
 			model.setMobileNo("+91"+model.getMobileNo());
+
 		model.setPwd(RandomPwdGenerater.randomAlphaNumeric(5));
 		AdminAccountEntity entity=new AdminAccountEntity();
 		BeanUtils.copyProperties(model, entity);
@@ -78,6 +79,7 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 		if(findByEmail!=null) {
 			findByEmail.setPwd(umodel.getNewPwd());
 			findByEmail.setAccountStatus(AdminAccountConstents.ACTIVE.toString());
+			findByEmail.setDeleteStatus(AdminAccountConstents.ACTIVE.toString());
 			repo.save(findByEmail);
 			return true;
 		}

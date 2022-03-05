@@ -42,7 +42,7 @@ public class AccountUnlockController {
 			return "unlockAccount";
 		}
 	}
-	@GetMapping("/loginPage")
+	@GetMapping(value = {"/","/loginPage"})
 	public String loadLoginPage(Model model) {
 		AccountModel accModel=new AccountModel();
 		model.addAttribute("accountModel", accModel);
