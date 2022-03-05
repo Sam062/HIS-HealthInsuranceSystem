@@ -5,19 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-	
-</script>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-
 <script>
 	$(document).ready(function(e) {
 		$("#email").blur(function(event) {
@@ -38,7 +25,7 @@
 <title>Admin Account Create</title>
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<%@include file="AdminDashboardHeader.jsp"%>
 	<div class="container" align="center">
 		<h4 class="text text-info">${msg }</h4>
 		<form:form action="AdminCreateAccount" method="POST"
@@ -46,7 +33,7 @@
 			<table class="table-hover">
 				<tr class="primary">
 					<td colspan="2">
-						<h2 class="text text-primary">Create Account Here</h2>
+						<h2 class="text text-primary display-4">Create Account</h2>
 					</td>
 				</tr>
 				<tr>

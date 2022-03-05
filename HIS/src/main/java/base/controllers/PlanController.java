@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import base.entity.PlanEntity;
 import base.model.PlanModel;
@@ -27,14 +28,14 @@ public class PlanController {
 		return "createPlan";
 	}
 	@PostMapping("/createPlan")
-	public String createPlan(PlanModel planModel, Model model) {
+	public String createPlan(PlanModel planModel, RedirectAttributes model) {
 		PlanEntity savePlan = planService.savePlan(planModel);
 		if(savePlan!=null) {
-			model.addAttribute("msg", "PLAN ADDED TO DB.");
+			model.addFlashAttribute("msg", "PLAN ADDED TO DB.");
 		}else {
-			model.addAttribute("msg", "PLAN COULDN'T ADD TO DB.");
+			model.addFlashAttribute("msg", "PLAN COULDN'T ADD TO DB.");
 		}
-		return "createPlan";
+		return "redirect:/loadPlanCreation";
 	}
 
 	@GetMapping("/viewPlans")

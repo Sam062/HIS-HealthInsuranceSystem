@@ -18,7 +18,7 @@ import base.service.AdminAccountService;
 import base.utils.TwilloMsg;
 
 @Controller
-public class AdminController {
+public class AdminController { // Admin Module
 	@Autowired
 	private AdminAccountService service;
 
@@ -50,13 +50,22 @@ public class AdminController {
 
 	@PostMapping("/validateAdminLogin")
 	public String validateAdminLogin(@ModelAttribute("accountModel") AccountModel accModel,Model model) {
-		AccountModel findByEmailAndPwd = service.findByEmailAndPwd(accModel.getEmail(), accModel.getPwd());
-		if(findByEmailAndPwd!=null) {
-			if(findByEmailAndPwd.getAccountStatus().equals(AdminAccountConstents.INACTIVE.toString())) {
-				model.addAttribute("msg", "Please activate your account first.");
+		AccountModel accModel1 = service.findByEmailAndPwd(accModel.getEmail(), accModel.getPwd());
+		if(accModel1!=null) {
+			if(accModel1.getAccountStatus().equalsIgnoreCase(AdminAccountConstents.INACTIVE.toString())) {
+				model.addAttribute("msg", "Please Unlock your account first.");
 				return "loginPage";
+			}else {
+				if(accModel1.getDeleteStatus().equalsIgnoreCase(AdminAccountConstents.ACTIVE.toString())) {
+					if(accModel1.getRole()!=null && accModel1.getRole().equalsIgnoreCase("ADMIN"))
+						return "adminDashboard";
+					else
+						return "caseWorkerDashboard";
+				}else {
+					model.addAttribute("msg", "Please activate your account first.");
+					return "loginPage";
+				}
 			}
-			return "adminDashboard";
 		}else {
 			model.addAttribute("msg", "Invalid Credentials!");	
 			return "loginPage";
@@ -84,6 +93,7 @@ public class AdminController {
 					model.addAttribute("accountModel", aModel);
 					return "loginPage";
 				} catch (Exception e) {
+					e.printStackTrace();
 					model.addAttribute("msg", "Couldn't send messege.");
 				}
 			}
@@ -119,7 +129,7 @@ public class AdminController {
 			model.addAttribute("msg", "No Accounts Found !");
 		return findAllAccounts;
 	}
-	
+
 	@GetMapping("/loadeditpage")
 	public String showEditPage(@RequestParam("id")Integer id,Model model) {
 		AccountModel accModel=service.findByadminId(id);

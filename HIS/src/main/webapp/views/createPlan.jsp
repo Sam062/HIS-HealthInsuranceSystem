@@ -8,16 +8,16 @@
 <title>Create Plan</title>
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<%@include file="AdminDashboardHeader.jsp"%>
 	<div class="container" align="center">
 		<h4 class="text text-info">${msg }</h4>
 		<form:form action="createPlan" method="POST"
 			modelAttribute="planModel">
-			<form:input class="form-control" path="planId"/>
+			<form:hidden class="form-control" path="planId"/>
 			<table class="table-hover">
 				<tr class="primary">
 					<td colspan="2">
-						<h2 class="text text-primary">Create Plan Here</h2>
+						<h2 class="text text-primary display-4">Create Plan</h2>
 					</td>
 				</tr>
 				<tr>

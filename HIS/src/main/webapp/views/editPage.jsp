@@ -5,19 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-	
-</script>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-
 <script>
 	$(document).ready(function(e) {
 		$("#email").blur(function(event) {
@@ -38,7 +25,7 @@
 <title>Admin Account Edit</title>
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<%@include file="AdminDashboardHeader.jsp"%>
 	<div class="container" align="center">
 		<h4 class="text text-info">${msg }</h4>
 		<form:form action="adminaccountedit" method="POST"
@@ -46,11 +33,11 @@
 			<table class="table-hover">
 				<tr class="primary">
 					<td colspan="2">
-						<h2 class="text text-primary">Edit Account Here</h2>
+						<h2 class="text text-primary display-4">Edit Account Here</h2>
 					</td>
 				</tr>
 				<tr>
-					<td><form:hidden class="form-control" path="adminId"/></td>
+					<td><form:hidden class="form-control" path="adminId" /></td>
 				</tr>
 				<tr>
 					<td><h5>First Name</h5></td>
@@ -87,8 +74,10 @@
 							type="button" data-toggle="dropdown" path="role"
 							required="required">
 							<form:option class="btn btn-default dropdown-toggle" value=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- SELECT -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</form:option>
-							<form:option class="btn btn-default dropdown-toggle" value="Admin">ADMIN</form:option>
-							<form:option class="btn btn-default dropdown-toggle" value="Case Worker">CASE WORKER</form:option>
+							<form:option class="btn btn-default dropdown-toggle"
+								value="Admin">ADMIN</form:option>
+							<form:option class="btn btn-default dropdown-toggle"
+								value="Case Worker">CASE WORKER</form:option>
 						</form:select></td>
 				</tr>
 				<tr>

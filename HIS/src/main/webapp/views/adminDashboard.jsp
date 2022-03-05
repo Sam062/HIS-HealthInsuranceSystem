@@ -8,16 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<%@include file="AdminDashboardHeader.jsp"%>
 
 	<div align="center">
 		<h1 style="color: red;">
 			<marquee>
-				<b>***** UNDER CONSTRUCTION *****</b>
+				<b>*****Admin Dashboard UNDER CONSTRUCTION *****</b>
 			</marquee>
 		</h1>
-
-		<a class="btn btn-success btn-lg" href="/getAllAccounts">View Data</a>
 	</div>
 
 </body>

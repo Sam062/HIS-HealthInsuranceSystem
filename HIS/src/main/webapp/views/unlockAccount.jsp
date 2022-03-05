@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 	
@@ -36,7 +34,7 @@
 			<table class="table-hover">
 				<tr class="primary">
 					<td colspan="2">
-						<h1 class="text text-primary">Unlock Account Here</h1>
+						<h1 class="text text-primary display-4">Unlock Account !</h1>
 					</td>
 				</tr>
 				<tr>

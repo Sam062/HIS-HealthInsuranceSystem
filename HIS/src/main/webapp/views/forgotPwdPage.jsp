@@ -3,10 +3,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-</head>
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container" align="center">
@@ -14,7 +10,7 @@
 			<table class="table-hover">
 				<tr class="primary">
 					<td colspan="2">
-						<h2 class="text text-primary">Recover Password Here</h2>
+						<h2 class="text text-primary display-4">Recover Password Here</h2>
 					</td>
 				</tr>
 				<tr>

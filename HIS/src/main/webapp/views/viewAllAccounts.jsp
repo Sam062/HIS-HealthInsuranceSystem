@@ -7,43 +7,32 @@
 <head>
 <meta>
 <title>View All Accounts</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-<link
-	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script
-	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$('#ACCNT_DTLS').DataTable({
 			"pagingType" : "full_numbers"
 		});
 	});
-	function deleteConfirm(test,id) {
-		 if(confirm("Are you sure, You want to "+test+"?")){
-		 	let link=document.getElementById("delbtn").href;
-		 	link="updateaccountstatus?status=delete&id="+id;
-		 	window.open(link);
-		 	window.close();
-		 }
+	function deleteConfirm(test, id) {
+		if (confirm("Are you sure, You want to " + test + "?")) {
+			let link = document.getElementById("delbtn").href;
+			link = "updateaccountstatus?status=delete&id=" + id;
+			window.open(link);
+			window.close();
+		}
 	}
-	function activateConfirm(test,id) {
-		 if(confirm("Are you sure, You want to "+test+"?")){
-		 	let link=document.getElementById("actbtn").href;
-		 	link="updateaccountstatus?status=activate&id="+id;
-		 	window.open(link);
-		 	window.close();
-		 }
+	function activateConfirm(test, id) {
+		if (confirm("Are you sure, You want to " + test + "?")) {
+			let link = document.getElementById("actbtn").href;
+			link = "updateaccountstatus?status=activate&id=" + id;
+			window.open(link);
+			window.close();
+		}
 	}
 </script>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="AdminDashboardHeader.jsp"%>
 	<div class="container" align="center">
 		<table class="table table-striped" border="1" id="ACCNT_DTLS">
 			<thead>

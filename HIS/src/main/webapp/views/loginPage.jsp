@@ -3,11 +3,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<title>Health Insurance System</title>
-</head>
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container" align="center">
@@ -15,7 +10,7 @@
 			<table class="table-hover">
 				<tr class="primary">
 					<td colspan="2" align="center">
-						<h2 class="text text-primary">Login Here !</h2>
+						<h2 class="text text-primary display-4">Login Here !</h2>
 					</td>
 				</tr>
 				<tr>
@@ -38,7 +33,7 @@
 						type="submit" value="Sign in"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><a href="/forgotPwd">Forgot Password</a></td>
+					<td colspan="2"><a class="btn-warning" href="/forgotPwd">Forgot Password</a></td>
 				</tr>
 
 			</table>
