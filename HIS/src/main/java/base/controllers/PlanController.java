@@ -28,7 +28,7 @@ public class PlanController {
 		return "createPlan";
 	}
 	@PostMapping("/createPlan")
-	public String createPlan(PlanModel planModel, RedirectAttributes model) {
+	public String createPlan(@ModelAttribute("planModel")PlanModel planModel, RedirectAttributes model) {
 		PlanEntity savePlan = planService.savePlan(planModel);
 		if(savePlan!=null) {
 			model.addFlashAttribute("msg", "PLAN ADDED TO DB.");

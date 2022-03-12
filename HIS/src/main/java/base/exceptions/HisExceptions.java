@@ -1,0 +1,22 @@
+package base.exceptions;
+
+import org.springframework.transaction.TransactionSystemException;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@ControllerAdvice
+public class HisExceptions {
+	
+	@ExceptionHandler(value = TransactionSystemException.class)
+	public String ValidationExceptionHandler(Model model) {
+		model.addAttribute("errMsg", "SERVER VALIDATION FAILED");
+		return "Error";
+	}
+	@ExceptionHandler(value = Exception.class)
+	public String exceptionHandler(Model model) {
+		model.addAttribute("errMsg", "SOMETHING WENT WRONG");
+		return "Error";
+	}
+
+}
