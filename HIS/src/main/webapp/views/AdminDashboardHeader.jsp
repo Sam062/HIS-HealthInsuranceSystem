@@ -16,7 +16,7 @@
 		<a class="btn btn-warning btn-sm" href="/loadCreateAccount">Create
 			Account</a> &nbsp; <a class="btn btn-warning btn-sm"
 		href="/getAllAccounts">View Accounts</a> &nbsp; <a
-		class="btn btn-info btn-sm" href="loginPage"><i><b> Logout
+		class="btn btn-info btn-sm" href="/logout"><i><b> Logout
 			</b></i></a>
 	</span>
 	<span style="margin-left: 33rem; font-size: 2rem;" class="display-5">HIS-ADMIN</span>

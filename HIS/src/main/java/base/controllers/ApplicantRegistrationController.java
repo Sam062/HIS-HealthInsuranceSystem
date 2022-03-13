@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import base.constents.AdminAccountConstents;
+import base.constents.HisConstants;
 import base.model.ApplicantModel;
 import base.service.impl.ApplicantRegisterService;
 
@@ -32,7 +32,7 @@ public class ApplicantRegistrationController {// AR Module
 		if(applicantModel!=null && applicantModel.getSsnNumber()!=null && !applicantModel.getSsnNumber().isEmpty()) {
 			String stateName=appRegService.getStateNameBySSN(applicantModel.getSsnNumber());
 			
-			if(stateName.equalsIgnoreCase(AdminAccountConstents.NJ.toString())) {
+			if(stateName.equalsIgnoreCase(HisConstants.NJ.toString())) {
 				Integer isApplicantSaved = appRegService.saveApplicantDetails(applicantModel);
 				if(isApplicantSaved!=null && isApplicantSaved!=0) 
 					model.addFlashAttribute("msg", "Applicant Registration success. Application ID-"+isApplicantSaved);

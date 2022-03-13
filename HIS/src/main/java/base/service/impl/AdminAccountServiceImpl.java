@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import base.constents.AdminAccountConstents;
+import base.constents.HisConstants;
 import base.entity.AdminAccountEntity;
 import base.model.AccountModel;
 import base.model.UnlockAccountModel;
@@ -34,8 +34,8 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 		model.setPwd(RandomPwdGenerater.randomAlphaNumeric(5));
 		AdminAccountEntity entity=new AdminAccountEntity();
 		BeanUtils.copyProperties(model, entity);
-		entity.setAccountStatus(AdminAccountConstents.INACTIVE.toString());
-		entity.setDeleteStatus(AdminAccountConstents.INACTIVE.toString());
+		entity.setAccountStatus(HisConstants.INACTIVE.toString());
+		entity.setDeleteStatus(HisConstants.INACTIVE.toString());
 		try {
 			AdminAccountEntity isSaved = repo.save(entity);
 			if(isSaved!=null) {
@@ -78,8 +78,8 @@ public class AdminAccountServiceImpl implements AdminAccountService{
 		AdminAccountEntity findByEmail = repo.findByEmail(umodel.getEmail());
 		if(findByEmail!=null) {
 			findByEmail.setPwd(umodel.getNewPwd());
-			findByEmail.setAccountStatus(AdminAccountConstents.ACTIVE.toString());
-			findByEmail.setDeleteStatus(AdminAccountConstents.ACTIVE.toString());
+			findByEmail.setAccountStatus(HisConstants.ACTIVE.toString());
+			findByEmail.setDeleteStatus(HisConstants.ACTIVE.toString());
 			repo.save(findByEmail);
 			return true;
 		}

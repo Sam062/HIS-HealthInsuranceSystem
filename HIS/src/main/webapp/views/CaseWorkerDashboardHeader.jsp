@@ -15,7 +15,7 @@
 		class="btn btn-warning btn-sm" href="#">View Applications</a> &nbsp; <a
 		class="btn btn-warning btn-sm" href="#">Data Collection-CreateCases</a> &nbsp; <a
 		class="btn btn-warning btn-sm" href="#">Data Collection-ViewCases</a> &nbsp;<a
-		class="btn btn-info btn-sm" href="loginPage"><i><b> Logout
+		class="btn btn-info btn-sm" href="/logout"><i><b> Logout
 			</b></i></a>
 	</span>
 	<span style="margin-left: 15rem; font-size: 2rem;" class="display-5">HIS-Case

@@ -1,5 +1,7 @@
 package base.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 
+import base.constents.HisConstants;
 import base.model.AccountModel;
 import base.model.UnlockAccountModel;
 import base.service.AdminAccountService;
@@ -46,6 +50,19 @@ public class AccountUnlockController {
 	public String loadLoginPage(Model model) {
 		AccountModel accModel=new AccountModel();
 		model.addAttribute("accountModel", accModel);
+		return "loginPage";
+	}
+	@GetMapping(value = "/logout")
+	public String logout(Model model, HttpSession session, SessionStatus status) {
+		System.out.println("LOGGING OUT====>>>>"
+				+(String) session.getAttribute(HisConstants.LOGIN_EMAIL.toString()));
+		status.setComplete();
+		session.invalidate();
+
+		AccountModel accModel=new AccountModel();
+		model.addAttribute("accountModel", accModel);
+		model.addAttribute("msg", "LOGGED OUT SUCCESSFULLY.");
+
 		return "loginPage";
 	}
 
